@@ -2,10 +2,13 @@ import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
 
 const ALGORITHM = "aes-256-gcm";
 const IV_LENGTH = 16;
-const SESSION_SECRET = process.env.SESSION_SECRET || process.env.BETTER_AUTH_SECRET || "default-secret-change-me";
+const configuredSessionSecret = process.env.SESSION_SECRET;
 
-console.log("[SESSION-TOKEN] Module loaded. SESSION_SECRET source:", process.env.SESSION_SECRET ? "SESSION_SECRET" : process.env.BETTER_AUTH_SECRET ? "BETTER_AUTH_SECRET" : "DEFAULT_FALLBACK");
-console.log("[SESSION-TOKEN] SESSION_SECRET key derivation:", SESSION_SECRET.padEnd(32).slice(0, 32).substring(0, 4) + "..." + SESSION_SECRET.padEnd(32).slice(0, 32).slice(-4));
+if (!configuredSessionSecret || configuredSessionSecret.length < 32) {
+  throw new Error("SESSION_SECRET must be set to a value of at least 32 characters");
+}
+
+const SESSION_SECRET: string = configuredSessionSecret;
 
 export const SESSION_COOKIE_NAME = "storefront_session";
 
@@ -28,7 +31,6 @@ function encrypt(text: string): string {
 
 function decrypt(data: string): string {
   const decoded = decodeURIComponent(data);
-  console.log("[SESSION-TOKEN] decrypt input preview:", data.substring(0, 30), "... decoded preview:", decoded.substring(0, 30), "...");
   const [ivHex, authTagHex, encrypted] = decoded.split(":");
   if (!ivHex || !authTagHex || !encrypted) {
     throw new Error("Invalid session token format");
@@ -43,28 +45,22 @@ function decrypt(data: string): string {
 }
 
 export function createSessionToken(payload: SessionPayload): string {
-  console.log("[SESSION-TOKEN] createSessionToken called with payload:", JSON.stringify(payload));
   const data = JSON.stringify({
     ...payload,
     iat: Date.now(),
     exp: Date.now() + 30 * 24 * 60 * 60 * 1000,
   });
   const token = encrypt(data);
-  console.log("[SESSION-TOKEN] Token created, length:", token.length);
   return token;
 }
 
 export function verifySessionToken(token: string): SessionPayload | null {
   try {
-    console.log("[SESSION-TOKEN] verifySessionToken called, token length:", token.length);
     const decrypted = decrypt(token);
-    console.log("[SESSION-TOKEN] Decrypted successfully, payload preview:", decrypted.substring(0, 200));
     const payload = JSON.parse(decrypted) as SessionPayload;
     if (payload.exp && Date.now() > payload.exp) {
-      console.log("[SESSION-TOKEN] Token EXPIRED. exp:", new Date(payload.exp).toISOString(), "now:", new Date().toISOString());
       return null;
     }
-    console.log("[SESSION-TOKEN] Token valid. userId:", payload.userId, "email:", payload.email);
     return payload;
   } catch (err) {
     console.error("[SESSION-TOKEN] Decryption/parse FAILED:", err);

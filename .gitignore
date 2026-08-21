@@ -1,7 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+node_modules/
 /.pnp
 .pnp.*
 .yarn/*
@@ -17,6 +17,12 @@
 # production
 /build
 
+# caches and logs
+.cache/
+.turbo/
+*.cache
+*.log
+
 # misc
 .DS_Store
 *.pem
@@ -27,22 +33,40 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
+# Local environment and recovery files. Keep only .env.example in version control.
 .env*
+!.env.example
+docs/demo_accounts.md
+
+# Local database exports. Do not ignore migration source files.
+*.dump
+*.bak
+*.sql.gz
+database-dumps/
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
 
 /public/products/*
+!/public/products/.gitkeep
 
-drizzle/
+# Generated browser/test/media artefacts
+playwright-report/
+test-results/
+coverage/
+*.trace
+*.webm
+*.mp4
+screenshots/
+tmp/
+seed-output/
+docs/e2e_evidence/
+docs/preview_media/screenshots/
+docs/viva_video/node_modules/
+docs/viva_video/render_temp/
+docs/viva_video/media_check*.png
+docs/final_submission_archive/
 
 uploads
-
-TASK.md
-
-pnpm-workspace.yaml
-pnpm-lock.yaml
-
-docs
+docs/

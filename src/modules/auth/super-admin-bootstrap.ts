@@ -42,6 +42,7 @@ async function ensureBetterAuthTables() {
     CREATE TABLE IF NOT EXISTS auth_account (
       id text PRIMARY KEY,
       account_id text NOT NULL,
+      issuer text NOT NULL,
       provider_id text NOT NULL,
       user_id text NOT NULL,
       access_token text,
@@ -55,6 +56,10 @@ async function ensureBetterAuthTables() {
       updated_at timestamptz NOT NULL
     )
   `);
+  await db.execute(sql`ALTER TABLE auth_account ADD COLUMN IF NOT EXISTS issuer text`);
+  await db.execute(sql`UPDATE auth_account SET issuer = 'local:credential' WHERE issuer IS NULL`);
+  await db.execute(sql`ALTER TABLE auth_account ALTER COLUMN issuer SET NOT NULL`);
+  await db.execute(sql`CREATE UNIQUE INDEX IF NOT EXISTS auth_account_issuer_account_id_idx ON auth_account (issuer, account_id)`);
   await db.execute(sql`
     CREATE TABLE IF NOT EXISTS auth_verification (
       id text PRIMARY KEY,
@@ -114,8 +119,9 @@ export async function bootstrapFirstSuperAdmin(input: BootstrapInput) {
       body: { name: input.fullName, email, password: input.password },
       headers: new Headers(),
     });
-  } catch {
-    throw new Error("Failed to create Better Auth user");
+  } catch (error) {
+    const message = error instanceof Error ? error.message : "unknown error";
+    throw new Error(`Failed to create Better Auth user: ${message}`);
   }
   const authUserId = authResult.user.id;
 

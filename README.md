@@ -1,179 +1,71 @@
-# Capstone Project I
+# Trinity Sports Inventory and E-Commerce Capstone
 
-## Inventory Management System with E-Commerce Frontend
+A full-stack academic capstone based on a real client inventory-management requirement. The submitted scope is the implementation in this repository: a public storefront, customer account flows, and an administrator dashboard for product, category, inventory, and order management.
 
----
+## Technology stack
 
-## 1. Introduction
+- Next.js 16 and React 19
+- TypeScript and Tailwind CSS
+- PostgreSQL with Drizzle ORM and migrations
+- Better Auth for email/password sessions and protected routes
 
-This project is the Capstone Project I submission for the BSc (Hons) in Data Science programme at Sabaragamuwa University of Sri Lanka.
+## Main features
 
-The system is a full-stack web application that combines an inventory management system with an e-commerce storefront. It allows administrators to manage products, track inventory, and handle orders, while customers can browse products, add items to a cart, and proceed through checkout.
+- Product browsing by category, product detail pages, search, cart, wishlist, and checkout views
+- Customer signup, login, account, and order views
+- Protected dashboard pages for product, category, inventory, order, and settings workflows
+- Variant-level stock locations, stock adjustments, reservations, movement history, and non-negative stock validation
+- Seeded demo catalog data for local review
 
----
+## Local setup
 
-## 2. Tech Stack
+Prerequisites: Node.js 20+, pnpm, and a running PostgreSQL instance.
 
-| Technology | Purpose |
-|---|---|
-| Next.js | Full-stack React framework for server-side rendering, API routes, and page routing |
-| PostgreSQL | Relational database for persisting products, inventory, orders, and user data |
-| Drizzle ORM | TypeScript-first ORM for database access and schema management |
-| Tailwind CSS | Utility-first CSS framework for styling the user interface |
-| shadcn/ui | Reusable UI component library built on Radix UI and Tailwind CSS |
-| Zod | Schema validation library for form and API input validation |
-| Better Auth | Authentication framework for dashboard and customer sessions |
-
----
-
-## 3. Features
-
-### 3.1 Product Management
-- Create, update, and list products with SKU, name, description, and status
-- Product variants with attributes (size, color, etc.)
-- Product categories with hierarchical structure and filters
-- Brand management
-- Product images, specifications, and content sections
-- Bulk product operations
-
-### 3.2 Inventory Management
-- Track stock quantities per variant per location
-- Stock adjustments (in, out, adjustment)
-- Low stock threshold alerts
-- Inventory reservations for checkout
-
-### 3.3 Order Processing
-- Shopping cart (guest and authenticated)
-- Checkout session with pricing breakdown
-- Order creation with status tracking
-- Order status history and fulfillment
-
-### 3.4 Admin Dashboard
-- Overview page with key metrics
-- Product management (create, edit, variants, images, specifications)
-- Category management with filters
-- Inventory management with stock adjustments
-- Order management with status updates
-- User management with role-based access
-
-### 3.5 Storefront
-- Public product listing and detail pages
-- Category-based navigation with filters
-- Shopping cart and checkout
-- Customer account with order history and addresses
-- Wishlist functionality
-- Search
-
-### 3.6 Authentication
-- Dashboard user authentication with role-based access (super_admin, admin, operator, viewer)
-- Customer authentication with signup, login, and password reset
-
-### 3.7 File Management
-- Product and category image upload
-- Server-side file storage with metadata tracking
-
----
-
-## 4. System Architecture
-
-```
-┌─────────────────────────────────────┐
-│           UI Layer                  │
-│   Next.js pages and components     │
-├─────────────────────────────────────┤
-│           API Layer                 │
-│   API routes and server actions    │
-├─────────────────────────────────────┤
-│         Service Layer               │
-│   Business logic and validation    │
-├─────────────────────────────────────┤
-│        Repository Layer             │
-│   Database queries                 │
-├─────────────────────────────────────┤
-│        Database Layer               │
-│   PostgreSQL via Drizzle ORM       │
-└─────────────────────────────────────┘
-```
-
----
-
-## 5. Project Structure
-
-```
-src/
-  app/            Next.js routes, pages, and API endpoints
-  components/     Reusable UI components
-  modules/        Domain modules (service, repo, schema per feature)
-  core/           Shared utilities (auth, db, env, http, search)
-docs/             Project documentation
-index/            Project overview maps
-drizzle/          Database migrations
-```
-
----
-
-## 6. Setup Instructions
-
-### Prerequisites
-- Node.js 18+ and pnpm package manager
-- PostgreSQL database server
-
-### Installation
-
-```bash
-# Clone the repository
-git clone <repository-url>
-cd capstone-project-i
-
-# Install dependencies
+```powershell
 pnpm install
+Copy-Item .env.example .env.local
+```
 
-# Set up environment variables
-cp .envexample .env.local
-# Edit .env.local with your database credentials
+Edit `.env.local` with local PostgreSQL credentials and a strong, local-only `SESSION_SECRET`. Never commit this file.
 
-# Generate and run database migrations
-pnpm db:generate
+## Database setup
+
+Create the database named by `DATABASE_URL`, then run:
+
+```powershell
 pnpm db:migrate
+pnpm bootstrap:super-admin
+pnpm seed:demo
+```
 
-# Start the development server
+`bootstrap:super-admin` reads the local administrator values from `.env.local`. Use the generated local account note only on your machine; it is intentionally ignored by Git.
+
+## Run the application
+
+This is a single full-stack Next.js application, so one command runs both the web interface and API routes:
+
+```powershell
 pnpm dev
 ```
 
-### Available Commands
+Open http://localhost:3000. For a production build, use `pnpm build` followed by `pnpm start`.
 
-| Command | Description |
-|---|---|
-| `pnpm dev` | Start development server |
-| `pnpm build` | Build for production |
-| `pnpm start` | Start production server |
-| `pnpm lint` | Run linting |
-| `pnpm typecheck` | Run type checking |
-| `pnpm db:generate` | Generate database migrations |
-| `pnpm db:migrate` | Apply database migrations |
-| `pnpm db:studio` | Open Drizzle Studio |
+## Validation commands
 
----
+```powershell
+pnpm typecheck
+pnpm lint
+pnpm build
+```
 
-## 7. Project Scope
+Browser and API observations are recorded in [docs/e2e_test_report.md](docs/e2e_test_report.md). This repository does not yet contain an automated Playwright suite, so the report distinguishes completed browser checks from pending authenticated browser coverage.
 
-This system demonstrates:
+## Documentation
 
-- Full-stack web application development using Next.js
-- Relational database design and management with PostgreSQL
-- Server-side rendering and SEO-friendly page architecture
-- Role-based access control and authentication
-- Inventory tracking and stock management
-- E-commerce product catalog, cart, and checkout workflow
-- RESTful API design with input validation
+See [docs](docs) for local setup, database setup, recovery notes, test evidence, presentation media, and submission materials. Start with:
 
----
-
-## 8. Author
-
-| Field | Details |
-|---|---|
-| Index Number | 23CDS0843 |
-| Programme | BSc (Hons) in Data Science |
-| Institution | Sabaragamuwa University of Sri Lanka |
-| Project | Capstone Project I |
+- [Local setup](docs/local_setup.md)
+- [Database setup](docs/setup_database.md)
+- [Submission checklist](docs/submission_checklist.md)
+- [Scope separation](docs/scope_separation.md)
+- [Final audit](docs/final_audit.md)

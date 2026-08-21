@@ -11,6 +11,7 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint",
     "bootstrap:super-admin": "tsx scripts/bootstrap-super-admin.mts",
+    "seed:demo": "tsx --env-file=.env.local scripts/seed-demo.mts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
     "db:studio": "drizzle-kit studio"

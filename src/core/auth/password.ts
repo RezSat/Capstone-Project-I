@@ -1,6 +1,10 @@
 import { pbkdf2Sync, randomBytes } from "node:crypto";
 
-const PASSWORD_SECRET = process.env.SESSION_SECRET || process.env.BETTER_AUTH_SECRET || "default-password-secret";
+const PASSWORD_SECRET = process.env.SESSION_SECRET;
+
+if (!PASSWORD_SECRET) {
+  throw new Error("SESSION_SECRET is required");
+}
 const ITERATIONS = 100000;
 const KEY_LENGTH = 64;
 const DIGEST = "sha512";
