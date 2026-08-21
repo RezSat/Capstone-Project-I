@@ -64,7 +64,7 @@ export default function StoreFooterMobile() {
 
       <p className="mt-8 flex items-center gap-2 border-t border-white/10 pt-5 font-body text-sm text-white/60">
         <Mail className="h-4 w-4 text-[#f97316]" />
-        contact@example.edu
+        23cds0843@ms.sab.ac.lk
       </p>
     </footer>
   )

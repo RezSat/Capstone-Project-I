@@ -83,7 +83,7 @@ export default function StoreFooter() {
           <div className="mt-6 space-y-2 font-body text-sm text-white/72">
             <p className="flex items-center gap-3">
               <Mail className="h-4 w-4 text-[#f97316]" />
-              contact@example.edu
+              23cds0843@ms.sab.ac.lk
             </p>
             <p className="flex items-center gap-3">
               <GitBranch className="h-4 w-4 text-[#f97316]" />
