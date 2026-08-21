@@ -85,8 +85,7 @@ export function Sidebar({ role }: { role: string }) {
           <span className="flex size-10 items-center justify-center rounded-full bg-[#f97316] font-ui text-lg font-black text-white">S</span>
           {!collapsed && (
             <span className="hidden md:block">
-              <span className="block font-display text-lg font-semibold uppercase leading-none text-[#191A1C]">Admin</span>
-              <span className="font-ui text-[10px] font-bold uppercase tracking-[0.18em] text-[#f97316]">Capstone</span>
+              <span className="block font-display text-sm font-semibold uppercase leading-tight text-[#191A1C]">Inventory Admin Dashboard</span>
             </span>
           )}
         </Link>

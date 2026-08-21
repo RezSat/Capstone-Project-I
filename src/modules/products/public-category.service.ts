@@ -99,7 +99,7 @@ export async function getStorefrontCategoryBySlug(
     groupSlug: category.groupSlug,
     slug: category.slug,
     title: category.title,
-    heroImage: category.heroImageUrl ?? "/images/productpage/sample_header.png",
+    heroImage: category.heroImageUrl ?? "/images/storefront-generic/marketplace-hero.png",
     fallbackHeroImage: category.fallbackHeroImageUrl ?? "/images/storefront-generic/marketplace-hero.png",
     description: category.description ?? "",
     filters: transformFilters(category.filters),

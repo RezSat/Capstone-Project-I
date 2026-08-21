@@ -1,4 +1,4 @@
-# Trinity Sports Inventory and E-Commerce Capstone
+# Inventory Management System Capstone
 
 A full-stack academic capstone based on a real client inventory-management requirement. The submitted scope is the implementation in this repository: a public storefront, customer account flows, and an administrator dashboard for product, category, inventory, and order management.
 

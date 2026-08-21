@@ -21,7 +21,7 @@ export default function StoreFooterMobile() {
           Capstone Project I
         </p>
         <h2 className="mt-2 font-display text-2xl font-semibold uppercase leading-tight">
-          Storefront Inventory Platform
+          Inventory Management System
         </h2>
         <p className="mt-3 font-body text-sm leading-6 text-white/70">
           Inventory Management System with E-Commerce Frontend

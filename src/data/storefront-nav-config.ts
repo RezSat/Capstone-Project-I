@@ -15,132 +15,86 @@ export interface NavItem {
 export const storefrontNavItems: NavItem[] = [
   { label: 'HOME', href: '/' },
   {
-    label: 'FEATURED',
-    href: '#',
+    label: 'RACQUET SPORTS',
+    href: '/category/badminton/racquets',
     megaMenu: {
       columns: [
         {
-          heading: 'PRODUCTS',
+          heading: 'BADMINTON',
           links: [
-            { label: 'FEATURED ITEMS', href: '/category/badminton/racquets' },
-            { label: 'REPLACEMENT PARTS', href: '/category/badminton/strings' },
-            { label: 'CONSUMABLES', href: '/category/badminton/shuttlecocks' },
-            { label: 'HANDHELD GOODS', href: '/category/badminton/grips' },
-            { label: 'SETUP TOOLS', href: '/category/badminton/nets' },
+            { label: 'RACQUETS', href: '/category/badminton/racquets' },
+            { label: 'STRINGS', href: '/category/badminton/strings' },
+            { label: 'SHUTTLECOCKS', href: '/category/badminton/shuttlecocks' },
           ],
         },
         {
-          heading: 'APPAREL',
-          links: [
-            { label: "MEN'S RANGE", href: '/category/badminton/men-s-clothing' },
-            { label: "WOMEN'S RANGE", href: '/category/badminton/women-s-clothing' },
-            { label: 'ACTIVEWEAR', href: '/category/badminton/badminton-clothing' },
-            { label: 'FOOTWEAR', href: '/category/badminton/badminton-shoes' },
-          ],
-        },
-        {
-          heading: 'ACCESSORIES',
-          links: [{ label: 'BAGS', href: '/category/badminton/bags' }, { label: 'GRIP POWDER', href: '/category/badminton/grip-powder' }],
+          heading: 'TEAM SPORTS',
+          links: [{ label: 'VOLLEYBALLS', href: '/category/volleyball/balls' }],
         },
       ],
       imageSrc: '/images/storefront-generic/marketplace-hero.png',
-      imageAlt: 'Generic ecommerce product collection',
+      imageAlt: 'Demo sports equipment collection',
     },
   },
   {
-    label: 'CATALOG',
-    href: '#',
+    label: 'CRICKET',
+    href: '/category/cricket/bats',
     megaMenu: {
       columns: [
         {
-          heading: 'CORE GOODS',
+          heading: 'EQUIPMENT',
           links: [
-            { label: 'PRIMARY ITEMS', href: '/category/cricket/bats' },
-            { label: 'ALL PRODUCTS', href: '/category/cricket/all-balls' },
-            { label: 'PROTECTIVE GOODS', href: '/category/cricket/pads' },
-            { label: 'HAND ACCESSORIES', href: '/category/cricket/gloves' },
-            { label: 'SAFETY ITEMS', href: '/category/cricket/helmets' },
+            { label: 'BATS', href: '/category/cricket/bats' },
+            { label: 'BALLS', href: '/category/cricket/balls' },
+            { label: 'BATTING GLOVES', href: '/category/cricket/gloves' },
           ],
-        },
-        {
-          heading: 'WEARABLES',
-          links: [{ label: 'CLOTHING', href: '/category/cricket/cricket-clothing' }, { label: 'FOOTWEAR', href: '/category/cricket/shoes' }],
-        },
-        {
-          heading: 'ACCESSORIES',
-          links: [{ label: 'BAGS', href: '/category/cricket/bags' }, { label: 'EXTRAS', href: '/category/cricket/extras' }],
         },
       ],
       imageSrc: '/images/storefront-generic/collection-shelves.png',
-      imageAlt: 'Generic ecommerce shelves',
+      imageAlt: 'Demo cricket equipment collection',
     },
   },
   {
-    label: 'ESSENTIALS',
-    href: '#',
+    label: 'FITNESS & RUNNING',
+    href: '/category/fitness/dumbbells',
     megaMenu: {
       columns: [
         {
-          heading: 'DAILY USE',
+          heading: 'FITNESS',
           links: [
-            { label: 'SMALL ACCESSORIES', href: '/category/accessories/wrist-bands' },
-            { label: 'WEARABLE ADD-ONS', href: '/category/accessories/headbands' },
-            { label: 'SOCKS', href: '/category/accessories/socks' },
+            { label: 'DUMBBELLS', href: '/category/fitness/dumbbells' },
+            { label: 'RESISTANCE BANDS', href: '/category/fitness/resistance-bands' },
           ],
         },
         {
-          heading: 'SUPPORT',
-          links: [{ label: 'SUPPORTERS', href: '/category/accessories/supporters' }, { label: 'INSOLES', href: '/category/accessories/insoles' }],
-        },
-        {
-          heading: 'EXTRAS',
-          links: [{ label: 'GIFT VOUCHERS', href: '/category/accessories/gift-vouchers' }],
-        },
-      ],
-      imageSrc: '/images/storefront-generic/checkout-packages.png',
-      imageAlt: 'Generic ecommerce packages',
-    },
-  },
-  {
-    label: 'COLLECTIONS',
-    href: '#',
-    megaMenu: {
-      columns: [
-        {
-          heading: 'COMPACT ITEMS',
+          heading: 'RUNNING',
           links: [
-            { label: 'SMALL GOODS', href: '/category/tennis/balls' },
-            { label: 'FOOTWEAR', href: '/category/tennis/shoes' },
-            { label: 'CLOTHING', href: '/category/tennis/clothing' },
-          ],
-        },
-        {
-          heading: 'BULK GOODS',
-          links: [
-            { label: 'STANDARD ITEMS', href: '/category/volleyball/balls' },
-            { label: 'SUPPORT ITEMS', href: '/category/volleyball/knee-pads' },
-            { label: 'FOOTWEAR', href: '/category/volleyball/shoes' },
-            { label: 'CLOTHING', href: '/category/volleyball/clothing' },
-            { label: 'ACCESSORIES', href: '/category/volleyball/accessories' },
-          ],
-        },
-        {
-          heading: 'HANDHELD',
-          links: [{ label: 'TOOLS', href: '/category/pickleball/paddles' }, { label: 'SMALL GOODS', href: '/category/pickleball/balls' }],
-        },
-        {
-          heading: 'SEASONAL',
-          links: [
-            { label: 'CAPS', href: '/category/swimming/swimming-caps' },
-            { label: 'SUITS', href: '/category/swimming/swimming-suits' },
-            { label: 'EYEWEAR', href: '/category/swimming/swimming-goggles' },
-            { label: 'EXTRAS', href: '/category/swimming/swimming-extras' },
+            { label: 'RUNNING SHOES', href: '/category/running/shoes' },
+            { label: 'SPORTS SOCKS', href: '/category/running/socks' },
           ],
         },
       ],
       imageSrc: '/images/storefront-generic/marketplace-hero.png',
-      imageAlt: 'Generic marketplace collection',
+      imageAlt: 'Demo fitness and running collection',
     },
   },
-  { label: 'CONTACT US', href: '#', megaMenu: { type: 'contact' } },
+  {
+    label: 'ACCESSORIES',
+    href: '/category/accessories/water-bottles',
+    megaMenu: {
+      columns: [
+        {
+          heading: 'EVERYDAY ESSENTIALS',
+          links: [
+            { label: 'WATER BOTTLES', href: '/category/accessories/water-bottles' },
+            { label: 'SPORTS BAGS', href: '/category/accessories/sports-bags' },
+            { label: 'WRIST BANDS', href: '/category/accessories/wrist-bands' },
+          ],
+        },
+      ],
+      imageSrc: '/images/storefront-generic/checkout-packages.png',
+      imageAlt: 'Demo sports accessories collection',
+    },
+  },
+  { label: 'CONTACT US', href: '/#contact', megaMenu: { type: 'contact' } },
 ]

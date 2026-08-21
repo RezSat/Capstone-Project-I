@@ -12,7 +12,7 @@ import type {
 } from '@/components/storefront/HomePage/homepage-content'
 
 export const metadata: Metadata = {
-  title: 'Storefront Inventory Platform | Modern Ecommerce Catalog',
+  title: 'Inventory Management System',
   description: 'Browse a fast, responsive ecommerce storefront with product discovery, categories, wishlist, cart, and checkout flows.',
 }
 

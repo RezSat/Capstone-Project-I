@@ -1,7 +1,7 @@
 {
-  "name": "storefront",
+  "name": "inventory-management-system",
   "author": "RezSat",
-  "description": "StoreFront E-Commerce Platform",
+  "description": "Academic Inventory Management System with an e-commerce frontend",
   "version": "0.1.0",
   "private": true,
   "scripts": {

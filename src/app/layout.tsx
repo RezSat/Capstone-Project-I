@@ -25,8 +25,8 @@ const oswald = Oswald({
 });
 
 export const metadata: Metadata = {
-  title: "Storefront Inventory Platform",
-  description: "Inventory Management System with E-Commerce Frontend",
+  title: "Inventory Management System",
+  description: "Academic Inventory Management System with an e-commerce frontend",
 };
 
 export default function RootLayout({

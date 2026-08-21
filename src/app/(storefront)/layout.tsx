@@ -33,8 +33,10 @@ export default async function StorefrontLayout({ children }: StorefrontLayoutPro
       <div className="bg-white">
         <StoreHeader />
         <main>{children}</main>
-        <div className="hidden md:block"><StoreFooter /></div>
-        <div className="block md:hidden"><StoreFooterMobile /></div>
+        <div id="contact">
+          <div className="hidden md:block"><StoreFooter /></div>
+          <div className="block md:hidden"><StoreFooterMobile /></div>
+        </div>
         <CartDrawer freeShippingThresholdMinor={freeShippingThresholdMinor} baseShippingFeeMinor={baseShippingFeeMinor} />
       </div>
     </CartProvider>

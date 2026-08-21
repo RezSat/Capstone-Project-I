@@ -25,7 +25,6 @@ function formatExpiry(value: string): string {
 export default function CheckoutPage() {
   const { items, totalMinor } = useCart()
   const { openLoginModal } = useAuthModal()
-  const [discountCode, setDiscountCode] = useState("")
   const [shippingConfig, setShippingConfig] = useState({ threshold: 650000, baseFee: 35000 })
   const [contact, setContact] = useState({ email: "", phone: "" })
   const [delivery, setDelivery] = useState({ firstName: "", lastName: "", address: "", apartment: "", city: "", postalCode: "" })
@@ -48,8 +47,7 @@ export default function CheckoutPage() {
   const subtotalMinor = totalMinor
   const isFreeShippingEligible = subtotalMinor >= shippingConfig.threshold
   const shippingMinor = isFreeShippingEligible ? 0 : shippingConfig.baseFee
-  const discountMinor = 0
-  const grandTotalMinor = subtotalMinor + shippingMinor - discountMinor
+  const grandTotalMinor = subtotalMinor + shippingMinor
 
   async function handlePayNow() {
     if (items.length === 0) {
@@ -327,7 +325,7 @@ export default function CheckoutPage() {
               <div key={item.variantId} className="flex items-center gap-4">
                 <div className="relative h-16 w-16 flex-shrink-0 rounded border border-[#E5E5E5] bg-white p-1">
                   {item.imageUrl ? (
-                    <Image src={item.imageUrl} alt={item.name} fill className="object-contain p-1" />
+                    <Image src={item.imageUrl} alt={item.name} fill sizes="64px" className="object-contain p-1" />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center text-[10px] text-gray-300">IMG</div>
                   )}
@@ -351,22 +349,6 @@ export default function CheckoutPage() {
             )}
           </div>
 
-          <div className="mb-6 flex gap-2 border-t border-[#E5E5E5] pt-4">
-            <input
-              type="text"
-              placeholder="Discount code"
-              value={discountCode}
-              onChange={(e) => setDiscountCode(e.target.value)}
-              className="flex-1 rounded border border-[#D9D9D9] px-3 py-2 text-sm focus:outline-none focus:border-gray-400"
-            />
-            <button
-              type="button"
-              className="rounded border border-[#D9D9D9] bg-white px-4 py-2 font-oswald text-xs uppercase text-[#191A1C] transition-colors hover:bg-gray-50"
-            >
-              Apply
-            </button>
-          </div>
-
           <div className="border-t border-[#E5E5E5] pt-4 space-y-2.5">
             <div className="flex justify-between text-sm text-[#777777]">
               <span>Subtotal</span>
@@ -377,10 +359,6 @@ export default function CheckoutPage() {
               <span className={`font-medium ${shippingMinor === 0 ? "text-green-600 uppercase font-bold" : "text-[#191A1C]"}`}>
                 {shippingMinor === 0 ? "FREE" : formatPrice(shippingMinor)}
               </span>
-            </div>
-            <div className="flex justify-between text-sm text-[#777777]">
-              <span>Discount</span>
-              <span className="font-medium text-green-600">- {formatPrice(discountMinor)}</span>
             </div>
             <div className="flex justify-between border-t border-[#E5E5E5] pt-3 font-oswald text-xl font-semibold text-[#191A1C]">
               <span>Total</span>

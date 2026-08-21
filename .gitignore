@@ -70,3 +70,6 @@ docs/final_submission_archive/
 
 uploads
 docs/
+
+# Keep the client-branding cleanup record in version control while generated
+# and submission documentation remains local by default.

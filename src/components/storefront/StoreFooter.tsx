@@ -27,7 +27,7 @@ export default function StoreFooter() {
         <section>
           <StorefrontLogo tone="dark" />
           <p className="mt-6 max-w-[460px] font-body text-sm leading-7 text-white/70">
-            Storefront Inventory Platform is an academic Capstone Project I
+            Inventory Management System is an academic Capstone Project I
             implementation of an inventory management system with an ecommerce
             frontend.
           </p>
