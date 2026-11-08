@@ -4,8 +4,18 @@ import { ok, fail } from "@/core/http/responses";
 import { db } from "@/core/db/client";
 import { orders } from "@/core/db/schema";
 import { releaseInventoryOnCancel } from "@/modules/orders/storefront-order.service";
+import { getDashboardAuth } from "@/modules/auth/dashboard-auth.service";
+import { hasPermission, PERMISSIONS } from "@/core/auth/rbac-permissions";
 
 export async function DELETE(request: Request) {
+  const auth = await getDashboardAuth();
+  if (!auth.isAuthenticated || !auth.isActive) {
+    return Response.json(fail("UNAUTHORIZED", "Dashboard authentication is required"), { status: 401 });
+  }
+  if (!hasPermission(auth.role, PERMISSIONS.ORDERS_MANAGE)) {
+    return Response.json(fail("FORBIDDEN", "orders.manage permission required"), { status: 403 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
