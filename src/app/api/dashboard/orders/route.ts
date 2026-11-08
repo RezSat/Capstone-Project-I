@@ -1,7 +1,17 @@
 import { NextResponse } from "next/server";
 import { listOrdersPaginated, getOrderItems } from "@/modules/orders/dashboard-orders.repo";
+import { getDashboardAuth } from "@/modules/auth/dashboard-auth.service";
+import { hasPermission, PERMISSIONS } from "@/core/auth/rbac-permissions";
 
 export async function GET(request: Request) {
+  const auth = await getDashboardAuth();
+  if (!auth.isAuthenticated || !auth.isActive) {
+    return NextResponse.json({ success: false, error: "Authentication required" }, { status: 401 });
+  }
+  if (!hasPermission(auth.role, PERMISSIONS.ORDERS_VIEW)) {
+    return NextResponse.json({ success: false, error: "Insufficient permissions" }, { status: 403 });
+  }
+
   try {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get("search") ?? undefined;
