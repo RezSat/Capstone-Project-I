@@ -58,14 +58,17 @@ pnpm lint
 pnpm build
 ```
 
-Browser and API observations are recorded in [docs/e2e_test_report.md](docs/e2e_test_report.md). This repository does not yet contain an automated Playwright suite, so the report distinguishes completed browser checks from pending authenticated browser coverage.
+The repository does not currently include an automated browser test suite or a published end-to-end test report. Capture and record actual validation results before claiming functionality has been tested. See [evaluation readiness](docs/evaluation-readiness.md) for outstanding verification tasks.
 
 ## Documentation
 
-See [docs](docs) for local setup, database setup, recovery notes, test evidence, presentation media, and submission materials. Start with:
+See [docs](docs) for architecture, API, UI, and module-level documentation. Start with:
 
-- [Local setup](docs/local_setup.md)
-- [Database setup](docs/setup_database.md)
-- [Submission checklist](docs/submission_checklist.md)
-- [Scope separation](docs/scope_separation.md)
-- [Final audit](docs/final_audit.md)
+- [Architecture overview](docs/architecture/overview.md)
+- [Evaluator architecture walkthrough](docs/architecture/evaluator-walkthrough.md)
+- [Development provenance and observed milestones](docs/development-provenance.md)
+- [Evaluation readiness checklist](docs/evaluation-readiness.md)
+- [Module map](index/module-map.md)
+- [Database map](index/database-map.md)
+
+**Project origin:** This repository is an adapted academic version of an existing real-world application. Its initial Git commit imports an established baseline; it does not represent the start of development. See the provenance record for the distinction between original work and activity captured in this repository.
