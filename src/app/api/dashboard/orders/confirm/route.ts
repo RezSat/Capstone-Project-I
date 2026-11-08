@@ -3,8 +3,18 @@ import { eq } from "drizzle-orm";
 import { ok, fail } from "@/core/http/responses";
 import { db } from "@/core/db/client";
 import { orders, orderItems, inventoryItems } from "@/core/db/schema";
+import { getDashboardAuth } from "@/modules/auth/dashboard-auth.service";
+import { hasPermission, PERMISSIONS } from "@/core/auth/rbac-permissions";
 
 export async function POST(request: Request) {
+  const auth = await getDashboardAuth();
+  if (!auth.isAuthenticated || !auth.isActive) {
+    return Response.json(fail("UNAUTHORIZED", "Dashboard authentication is required"), { status: 401 });
+  }
+  if (!hasPermission(auth.role, PERMISSIONS.ORDERS_MANAGE)) {
+    return Response.json(fail("FORBIDDEN", "orders.manage permission required"), { status: 403 });
+  }
+
   try {
     const { orderId } = await request.json();
 
